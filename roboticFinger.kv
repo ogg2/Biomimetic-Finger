@@ -1,0 +1,60 @@
+#:kivy 1.10
+
+#:import DragBehavior kivy.uix.behaviors.drag
+
+#Consider GridLayout
+FloatLayout:
+    canvas.before:
+        Color:
+            rgba: (0, 0, 1, 0.25)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: 'main_screen'
+
+    Label:
+        color: (1, 1, 1, 1)
+        text: "Biomimetic 3D Printed Robotic Finger"
+        pos_hint: ({'x': 0, 'y': 0.48})
+
+    Slider:
+        id: metacarpalSlider
+        size_hint: (0.1, 0.5)
+        pos_hint: ({'x': 0.2, 'y': 0.2})
+        orientation: 'vertical'
+        cursor_image: "bone.png"
+        cursor_size: (100, 100)
+        min: 0
+        max: 4095
+        step: 1
+        value: app.metacarpal
+        #on_value: app.on_metacarpalSlider_changed(*args)
+        on_touch_up: app.metacarpal = self.value
+        #on_touch_up: app.on_metacarpalSlider_changed(self, metacarpalSlider.value)
+
+    Label:
+        id: metacarpalLabel
+        color: (1, 1, 1, 1)
+        pos_hint: ({'x': -0.24, 'y': 0.22})
+        text: "Metacarpal Position: " + str(int(metacarpalSlider.value))
+
+    Slider:
+        id: phalanxSlider
+        size_hint: (0.1, 0.5)
+        pos_hint: ({'x': 0.7, 'y': 0.2})
+        orientation: 'vertical'
+        cursor_image: "bone.png"
+        cursor_size: (100, 100)
+        min: 0
+        max: 4095
+        step: 1
+        value: app.phalanx
+        #on_value: app.on_phalanxSlider_changed(*args)
+        on_touch_up: app.phalanx = self.value
+        #on_touch_up: app.on_phalanxSlider_changed(self, phalanxSlider.value)
+
+    Label:
+        id: phalanxLabel
+        color: (1, 1, 1, 1)
+        pos_hint: ({'x': 0.245, 'y': 0.22})
+        text: "Phalanx Position: " + str(int(phalanxSlider.value))
